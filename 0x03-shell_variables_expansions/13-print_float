@@ -1,2 +1,2 @@
 #!/bin/bash
-prinf "%f.2\n" $NUM
+bc <<< "scale=2; $NUM"
