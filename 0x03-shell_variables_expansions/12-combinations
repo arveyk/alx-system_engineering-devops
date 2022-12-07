@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -e {a..n}{a..n}"\n" {p..z}{p..z}"\n"
+echo -e {a..n}{a..n}"\n" {p..z}{p..z}"\n" {z..p}{z..p}"\n" {n..a}{n..a}"\n" | wc -l
