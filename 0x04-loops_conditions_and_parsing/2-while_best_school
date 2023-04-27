@@ -4,5 +4,5 @@ u=1
 while [ $u -le 10 ]
 do
 	printf "Best School\n"
-	u=$(( $u + 1 ))
+	u=$(( u + 1 ))
 done
