@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# This code prints numbers for 1 to 100
+
+for p in {1..100}
+do 
+	#let "w = $(( p / 15))"
+	#let "q = $(( p / 3))"
+	#let "s = $(( p / 5))"
+	if [ $((p / 15)) -eq 0 ]
+       then
+	       echo "FizzBuzz"
+       elif [ $((p / 3)) -eq 0 ]
+	then
+		echo "Fizz"
+	elif [ $((p / 5)) -eq 0 ]
+	then
+		echo "Buzz"
+		echo "$p"
+       fi	       
+done
