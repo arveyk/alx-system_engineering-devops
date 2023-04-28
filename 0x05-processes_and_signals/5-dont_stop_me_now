@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Terminates bash running process
+
+killall bash
