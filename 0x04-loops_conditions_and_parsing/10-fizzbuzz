@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# This script implements the FizzBuzz challenge
 
 for i in {1..100}
 do
