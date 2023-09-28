@@ -2,8 +2,8 @@
 # This Script prints "Best School" 10 times using until loop
 
 k=1
-until [ "$k" -ge 10 ]
+until [ "$k" -gt 10 ]
 do
-	printf "Best School\n"
+	echo Best School
 	k=$((k += 1))
 done
