@@ -1,2 +1,9 @@
 #!/usr/bin/env bash
+# Script that read conctent of /etc/passwd file
 
+file="/etc/passwd"
+
+while read -r LINE
+do
+	echo "$LINE"
+done < "$file"
