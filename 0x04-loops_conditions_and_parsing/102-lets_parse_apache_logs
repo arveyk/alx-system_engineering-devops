@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script for reading ip address info
+
+awk '{ print $1 }' ./apache-access.log
