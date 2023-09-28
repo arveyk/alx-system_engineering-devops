@@ -4,18 +4,16 @@
 w=1
 while [ "$w" -le 20 ]
 do
-	if [ "$w" -eq 4 ]; then
-		echo $w
-		printf "bad luck from China\n"
-	elif [ "$w" -eq 9 ]; then
-		echo $w
-		printf "bad luck from Japan\n"
-	elif [ "$w" -eq 17 ]; then
-		echo $w
-		printf "bad luck from Italy\n"
-	else
-		echo $w
-	fi
+	echo $w
+	b=$w 
+	case "$w" in 
+	4)
+		echo "bad luck from China";;
+	9)
+		echo "bad luck from Japan";;
+	17)
+		echo "bad luck from Italy";;
+esac
 	w=$((w + 1))
 done
 
