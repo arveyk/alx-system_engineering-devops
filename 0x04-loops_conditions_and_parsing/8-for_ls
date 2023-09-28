@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Script for displaying the contents of the current directory
+
+dir=$( ls "./" )
+for file in  $dir
+do
+	if [[ -f "$file" ]]
+	then
+		echo "$file"
+	fi
+done
