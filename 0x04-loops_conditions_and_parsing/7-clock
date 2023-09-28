@@ -1,21 +1,19 @@
 #!/usr/bin/env bash
 # This script count time in hour from 0 to 24
-
 hour=0
 min=1
-
 echo "Hour $hour"
-while [ "$hour" -le 24 ]
+while [ "$hour" -le 12 ]
 do
 	while [ "$min" -le 60 ]
 	do
 		if [ "$min" -eq 60 ]; then
 			echo Hour: $hour
-			hour=$((min + 1))
-			min=0
 		else
 			echo $min
 		fi
 		min=$((min + 1))
 	done
+	min=0
+	hour=$((hour + 1))
 done
