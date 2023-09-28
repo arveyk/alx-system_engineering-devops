@@ -7,7 +7,7 @@ do
 	echo Best School
 	if [ "$var" == 9 ]
 	then
-		echo hi
+		echo Hi
 	fi
 	var=$((var + 1))
 done
