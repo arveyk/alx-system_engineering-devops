@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-# This code displays "Best School" 10 times
-u=1
-while [ $u -le 10 ]
-do
-	printf "Best School\n"
-	u=$(( u + 1 ))
-done
