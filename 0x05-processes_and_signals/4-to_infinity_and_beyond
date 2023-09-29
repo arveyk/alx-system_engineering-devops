@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Prints a string indefinately, sleep cmd is also used
+
+while true
+do
+	echo To infinity and beyond
+	sleep 2
+done
