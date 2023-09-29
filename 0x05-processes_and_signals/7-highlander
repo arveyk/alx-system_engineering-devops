@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Script prints a text indefinately
 	
-trap 'echo -e "\nI am Invincible"; exit' SIGINT
+trap 'echo -e "\nI am Invincible"; exit' SIGTERM
 while true
 do
 	echo To infinity and beyond

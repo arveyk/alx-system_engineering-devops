@@ -4,22 +4,16 @@
 
 file=/var/run/myscript.pid
 su touch "$file"
-echo $file
+echo $$ >> $file
 
-while true
-do
-if []; then
-	echo To infinity and beyond
-fi
-if [SIGTERM]; then
-	echo
-fi
-if [SIGINT]; then
+trap 'echo 'SIGTERM;
+[SIGINT]; 
 	echo Y U no love me?!
-fi
 
-if [SIGTERM | SIGQUIT]; then
+[SIGTERM | SIGQUIT];
 	su rm file
 	break
-fi
+while true
+do
+	echo To infinity and beyond
 done

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 # Kills a process by using kill command
 
-#bas=$( pgrep 4-to_infinity_and_beyond )
-#PID=`ps -eaf | grep 4-to_infinity_and_beyond | grep -v grep | awk '{print $2}'`
-PID=$( pidof 4-to_infinity_and_beyond )
+PID=$( pgrep -f 4-to_infinity_and_beyond )
 kill -SIGTERM "$PID"
