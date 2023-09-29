@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Creates a script in /var/run/
+
+
+file=/var/run/myscript.pid
+su touch "$file"
+echo $file
+
+while true
+do
+if []; then
+	echo To infinity and beyond
+fi
+if [SIGTERM]; then
+	echo
+fi
+if [SIGINT]; then
+	echo Y U no love me?!
+fi
+
+if [SIGTERM | SIGQUIT]; then
+	su rm file
+	break
+fi
+done
