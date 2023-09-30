@@ -25,7 +25,6 @@ int infinite_while(void)
 int main(void)
 {
 	pid_t child_pid;
-	int status;
 
 	child_pid = fork();
 	if (child_pid > 0)
