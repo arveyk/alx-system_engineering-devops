@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Script starts stops or restarts a the manage_my _process script
+
+manage=$2
+if [[ $manage -s ]]; then
+	echo "I am alive"
+
+case "$manage"
+	start)
+		echo manage_my_process started;;
+	stop)
+		echo ;;
+	restart)
+		stop manage_my_process
+		su rm -f /var/run/my_process.pid
+		start manage_my_process
+		echo $((pidof $0)) >> /var/run/my_process.pid
+		echo manage_my_process restarted ;;
+esac
+else
+	echo Usage: manage_my_process {start\|stop\|restart}
+fi

@@ -6,14 +6,12 @@ file=/var/run/myscript.pid
 su touch "$file"
 echo $$ >> $file
 
-trap 'echo 'SIGTERM;
-[SIGINT]; 
-	echo Y U no love me?!
+trap 'echo Y U no love me?! ' SIGTERM
+trap 'echo I hate the kill command; su rm "$file"; exit' SIGTERM
+trap 'su rm "$file"; exit' SIGQUIT
 
-[SIGTERM | SIGQUIT];
-	su rm file
-	break
 while true
 do
 	echo To infinity and beyond
+	sleep 2
 done

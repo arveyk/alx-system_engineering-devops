@@ -24,21 +24,27 @@ int infinite_while(void)
  */
 int main(void)
 {
-	pid_t child_pid;
+	pid_t id_pid;
+	int zombie = 0;
 
-	child_pid = fork();
-	if (child_pid > 0)
-	{
-		infinite_while();
-	}
-	else if (child_pid == 0)
-	{
-		printf("Zombie process created, PID: %d", child_pid);
-	}
-	else
-	{
-		perror("Fork: ");
-		exit(1);
+	id_pid = fork();
+	while (zombie < 5)
+	{	
+		if (id_pid > 0)
+		{
+			printf("Zombie process created, PID: %d\n", id_pid);
+			infinite_while();
+		}
+		else if (id_pid == 0)
+		{
+			exit(0);
+		}
+		else
+		{
+			perror("Fork: ");
+			exit(1);
+		}
+		zombie++;
 	}
 	return (0);
 }
