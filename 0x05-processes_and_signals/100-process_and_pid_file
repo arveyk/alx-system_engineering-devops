@@ -3,12 +3,12 @@
 
 
 file=/var/run/myscript.pid
-su touch "$file"
+sudo touch "$file"
 echo $$ >> $file
 
-trap 'echo Y U no love me?! ' SIGTERM
-trap 'echo I hate the kill command; su rm "$file"; exit' SIGTERM
-trap 'su rm "$file"; exit' SIGQUIT
+trap 'echo I hate the kill command; sudo rm "$file"; exit' SIGTERM
+trap 'echo Y U no love me?! ' SIGINT
+trap 'rm -f "$file"; exit' SIGQUIT 
 
 while true
 do
