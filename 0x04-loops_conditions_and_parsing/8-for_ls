@@ -6,6 +6,6 @@ for file in  $dir
 do
 	if [[ -f "$file" ]]
 	then
-		echo "$file"
+		echo "$file" | cut -d '-' -f 2 
 	fi
 done
