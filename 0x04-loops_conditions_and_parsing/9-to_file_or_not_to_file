@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # Script for printing info about a file
 
-file="$1"
+file="school"
 
 if [ -e "$file" ]
 then
+	echo "$file" file exists
 	if [ -s "$file" ]
 	then
 		echo "$file" file is not empty
