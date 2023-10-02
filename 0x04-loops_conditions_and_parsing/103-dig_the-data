@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Script for reading ip address info
 
-awk '{ print "$1 " "$9}' ./apache-access.log | sort
+awk '{ print $10, $1, $9}' ./apache-access.log | sort
