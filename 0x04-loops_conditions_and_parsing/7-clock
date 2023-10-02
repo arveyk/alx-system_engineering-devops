@@ -2,7 +2,7 @@
 # This script count time in hour from 0 to 24
 hour="0"
 min="1"
-while [ "$hour" -le 11 ]
+while [ "$hour" -le 12 ]
 do
 	echo Hour: $hour
 	while [ "$min" -lt 60 ]
@@ -13,4 +13,3 @@ do
 	min=1
 	hour=$((hour + 1))
 done
-echo Hour: $hour
