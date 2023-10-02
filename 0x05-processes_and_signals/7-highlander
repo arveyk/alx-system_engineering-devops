@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # Script prints a text indefinately
 
-trap 'echo "I am Invincible!!!"; exit' SIGINT
+trap "" 15
+#trap "" 15 ; means the command cannot be interrupted
 
 while true
 do
 	echo To infinity and beyond
+	trap "echo I am invincible!!!" 15
 	sleep 2
 done
