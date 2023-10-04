@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script for [ping]ing
+address=$1
+ping -c 5 "$address"
