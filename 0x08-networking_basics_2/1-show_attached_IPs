@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Script to Display all active IPv4 IPs
+ip -4 -o addr | awk '{gsub(/\/.*/,"",$4); print $4}'
