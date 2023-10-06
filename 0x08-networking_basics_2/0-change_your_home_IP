@@ -3,6 +3,6 @@
 sudo cp /etc/hosts /etc/hosts.old
 sudo cp /etc/hosts ~/hosts.new
 
-echo "localhost	127.0.0.2" >> ~/hosts.new
-echo "facebook	8.8.8.8" >> ~/hosts.new
-sudo echo "$(cat ~/host.new)" > /etc/hosts
+sed 's/localhost	127.0.0.1/localhost	127.0.0.2/' /etc/hosts
+echo "facebook	8.8.8.8" | sudo tee -a /etc/hosts > /dev/null
+#sudo echo "$(cat ~/host.new)" > /etc/hosts
