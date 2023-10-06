@@ -8,4 +8,4 @@ sed 's/127.0.0.1/127.0.0.2/' ~/hosts.new
 #echo "facebook	8.8.8.8" | sudo tee -a /etc/hosts > /dev/null
 echo "facebook	8.8.8.8" | tee -a ~/hosts.new > /dev/null
 #< ~/hosts.new tee /etc/hosts > /dev/null
-cp -f ~/hosts.new /etc/hosts
+sudo cp -f ~/hosts.new /etc/hosts
