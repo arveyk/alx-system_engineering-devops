@@ -3,5 +3,8 @@
 sudo cp /etc/hosts /etc/hosts.old
 sudo cp /etc/hosts ~/hosts.new
 
-sudo sed 's/127.0.0.1/127.0.0.2/' /etc/hosts
-echo "facebook	8.8.8.8" | sudo tee -a /etc/hosts > /dev/null
+#sed 's/127.0.0.1/127.0.0.2/' /etc/hosts
+sed 's/127.0.0.1/127.0.0.2/' ~/hosts.new
+#echo "facebook	8.8.8.8" | sudo tee -a /etc/hosts > /dev/null
+echo "facebook	8.8.8.8" | tee -a ~/hosts.new > /dev/null
+< ~/hosts.new tee /etc/hosts > /dev/null
