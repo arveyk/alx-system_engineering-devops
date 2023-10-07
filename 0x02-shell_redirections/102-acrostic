@@ -1,2 +1,3 @@
 #!/bin/bash
-cut -c-1 /etc/passwd | tr -d "[:space:]"
+cut -c -1 "$1" | tr -d "[:space:]"
+echo \
