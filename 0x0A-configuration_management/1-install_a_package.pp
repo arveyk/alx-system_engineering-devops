@@ -1,5 +1,4 @@
-package { 'flask':
-    ensure   => installed,
-    provider => 'pip3',
-    version  =>  '2.1.0'
+exec { 'flask'
+    command  => 'sudo apt-install flaski==2.1.0'
 }
+
