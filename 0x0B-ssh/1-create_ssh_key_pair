@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 # Script to create ssh key pair 
-echo "school\n" | ssh-keygen -b 4096
-#echo "betty\nbetty\n"
+ssh-keygen -b 4096 -N "betty" -f school
