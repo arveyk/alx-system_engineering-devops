@@ -1,3 +1,4 @@
+# Manifest to modify the local config file
 ssh::server::include: /etc/ssh/school
 ssh::server::config_files:
   'school':
