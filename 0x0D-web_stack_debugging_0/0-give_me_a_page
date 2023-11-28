@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Script for fixing a Web stack issue
+
+echo "FROM httpd:latest\n COPY ./httpd.config /usr/local/apache2/conf/httpd.conf" >> Dockerfile
+docker build -t apache-server
+docker run -p 8080:80 apache-server
