@@ -1,7 +1,7 @@
 # Puppet Package installer
 package { 'flask'
-    ensure   => '2.1.0'
-    ensure   => 'installed'
-    provider => 'pip3'
+    command  => 'apt-install flask',
+    ensure   => '2.1.0',
+    provider => 'pip3',
 }
 
