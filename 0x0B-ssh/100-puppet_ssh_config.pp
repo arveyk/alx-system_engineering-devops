@@ -20,14 +20,20 @@
 #    }
 #}
 
-$public_key
-f8rAEzUSOenexXHVb51LvIyFZag=|Gvi0xlY/aM4UqiPkGhUBYV3w35s= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDp+0yRbo5JduIKoQgOMw7FgFpFFViASyMamSUVcZiW+Qyv8mmOUJa8IJDr1yDFg4GKUK3vNhKzrPCLL4UNxbV4
+class { '::ssh::client':
+    options => {
+      'Host *' => {
+        'SendEnv'                   => 'LANG LC_*',
+        'HashKnownHosts'            => 'yes',
+        'GSSAPIAuthentication'      => 'yes',
+        'GSSAPIDelegateCredentials' => 'no',
+        'HostbasedAuthentication'   => 'yes',
+        'EnableSSHKeysign'          => 'yes',
+      },
+    },
+}
 
-class ssh_node {
-    ssh_authorized_key { 'root@localhost':
-      ensure  => present,
-      user    => 'root',
-      type    => 'ssh-rsa'
-      key     => $public_key,
-    }
+exec {'shost.equiv':
+    command => 'cat /etc/ssh/ssh_known_hosts | grep -v "^#" | awk \'{print $1}\' | sed -e \'s/,/\n/g\' > /etc/ssh/shosts.equiv',
+    require => Class['ssh::knownhosts'],
 }
