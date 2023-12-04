@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script to insall nginx
+sudo apt update 
+sudo apt install nginx
