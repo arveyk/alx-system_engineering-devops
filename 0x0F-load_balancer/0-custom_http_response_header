@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Script for configuring nginx load balancer
+ssh ubuntu@54.172.95.94
+h_name=hostname
+echo 'add_header X-server-by '${h_name}'' >> var/www/site.url/nginx/*-main-context.config
+# sed -i '/pattern/d' file
