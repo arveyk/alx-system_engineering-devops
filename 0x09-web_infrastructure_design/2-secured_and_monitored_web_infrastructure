@@ -4,12 +4,29 @@ __ADDITIONAL ELEMENTS__
 
 What are firewalls for
 Why is the traffic served over HTTPS
+	This is the secure version of HTTP. Data, before being transmitted is 
+	encrypted.
 What monitoring is used for
+	Monitoring help in checking if a system is working as expected and helps
+	check if there are any suspicious activities.
 How the monitoring tool is collecting data
+	By checking the CPU and space and network health
+	It gathers data from all application components
 Explain what to do if you want to monitor your web server QPS
-
+	This can be done by calculating average the number of requests a 
+	server receives	per second and
 __ISSUES WITH INFRASTRUCTURE:
 
 Why terminating SSL at the load balancer level is an issue
+	Terminating SSL mean data is left unencrypted thus not secure when 
+	transmitted though a network.
 Why having only one MySQL server capable of accepting writes is an issue
+	Access by many people can overload it leading to slow or complete halt 
+	of the server.
+	Since the are no backups if it fails, all data is lost
+	There is no fallback incase it requires maintenance
+	An additional server thus is necessary to tackle these challenges
+	
 Why having servers with all the same components (database, web server and application server) might be a problem
+	If the server fails, a large part of the system is shut down leading to
+	complete system failure

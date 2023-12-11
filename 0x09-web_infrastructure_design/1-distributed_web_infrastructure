@@ -3,21 +3,43 @@ https://imgur.com/KS7u9Qc
 /* Some specifics about this infrastructure: */
 __ADDITIONAL ELEMENTS__
 
-Foradditional elements
+For additional elements
+
+__ Additional Server __ 
+ Additional servers are help in reducing the work-load that would have been on
+ one server and thus reduce chances of overloading and increase speed of work
+ done.
+ They also act as fallbacks. Incase one server fails, other servers step in to 
+ take the workload of that server untill it can be up and running again
 
 __LOAD BALANCER__
-What distribution algorithm your load balancer is configured with and how it works
+ The load-balancer is used to distribute workload among several servers.
+ What distribution algorithm your load balancer is configured with and how it 
+  works: Round-robin, each request is sent to an individual server one at a time  	until all the server have received a request and the load-balancer start	s from the beginning distributing work(like a queue).
 Is your load-balancer enabling an Active-Active or Active-Passive setup, explain the difference between both
+	Active-Active setup: My loadbalancer enables this so as to take 
+	advantage of having several working servers
+	Active-active; in this scenario all the servers are operating
+	Active-passive; the are active servers and there are passive servers on
+	stand-by to take-over incase the active one's fail.
 
 __Database__
 How a database Primary-Replica (Master-Slave) cluster works
+	The master database is the one that is written to and updated then the 
+	changes are duplicated in the replica, thus the replica cannot make
+	record changes and "push" to the primary.
 What is the difference between the Primary node and the Replica node in regard to the application
-
+	Flow of changes made is only made from the primary to the replica
 ISSIES WITH THIS INFRASTRUCTURE:
 Where are SPOF:
+	Single point of failure is any point in the infrastructure that upon
+	failure can lead to seriouse drop or even complete halt of performance
 
 Security issues (no firewall, no HTTPS):
-
+	This means that data transfer is vulnerable to being intercepted by 
+	un-authorized persons or malicious attacks. Since there is no 
+	encryption data transmitted is in plain text format and thus sensitive
+	info can be easly stollen
 No monitoring:
 	Since there is no monitoring, it would be difficult to know 
 		@sources offailure should one occur

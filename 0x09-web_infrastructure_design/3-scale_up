@@ -6,16 +6,36 @@ Some specifics about this infrastructure:
 For every additional element, why you are adding it
 
 --What are firewalls for
+Firewall offer some level of security by restricting the access of resource (databases or computer) by external users who may be malcious or are simply not 
+authorised
 
 Why is the traffic served over HTTPS
+	It is the secure variant of HTTP. Information that is transmitted is 
+	first encrypted and on reaching intended user it is decripted.
 What monitoring is used for
+	Monitoring is applied to check the functioning status of a system, If it
+	is performing as expected, if there are any failures in the system..
+	Monitoring also helps to check if there are any maliciouse attempts to 
+	access the system
+
 How the monitoring tool is collecting data
-Explain what to do if you want to monitor your web server QPS
+	It collects data by using application monitoring (where an application 		sends data and checks how fast it recieves and if there are any packets 	lost. etc) or
+	server monitoring (where the server's behaviour like CPU usage and tempe	rature are observed)
 
 __Issues with this infrastructure:__
 
 Why terminating SSL at the load balancer level is an issue
+	It leave the system vulnerable since the layer of security SSL offered
+	has been removed
 
 Why having only one MySQL server capable of accepting writes is an issue
+	Access by many people can overload it leading to slow or complete halt 
+	of the server.
+	Since the are no backups if it fails, all data is lost
+	There is no fallback incase it requires maintenance
+	An additional server thus is necessary to tackle these challenges
 
 Why having servers with all the same components (database, web server and application server) might be a problem
+
+	If the server fails, a large part of the system is shut down leading to
+	long down time
