@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-# Script to insall nginx
-ssh ubuntu@34.207.156.192 sudo apt update 
-ssh ubuntu@34.207.156.192 "sudo apt install nginx -y; \
-	echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html\
-	> /dev/null"
+# Script to install nginx
+# ssh ubuntu@34.207.156.192 sudo apt update 
+# ssh ubuntu@34.207.156.192 "sudo apt install nginx -y; \
+#	echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html\
+#	> /dev/null"
+sudo apt install nginx -y; echo \
+	'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html\
+	> /dev/null
