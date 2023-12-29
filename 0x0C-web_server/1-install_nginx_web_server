@@ -4,6 +4,8 @@
 # ssh ubuntu@34.207.156.192 "sudo apt install nginx -y; \
 #	echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html\
 #	> /dev/null"
-sudo apt install nginx -y; echo \
-	'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html\
+
+ssh ubuntu@34.207.156.192 sudo apt update; 
+sudo apt install nginx -y;
+echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html\
 	> /dev/null
