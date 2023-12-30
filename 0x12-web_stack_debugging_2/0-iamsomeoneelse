@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+who=$1
+
+if [ "$who" ]
+then
+	echo "$who"
+else
+	whoami
+fi
