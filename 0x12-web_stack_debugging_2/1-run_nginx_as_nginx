@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script to create nginx user
+
+sudo sed -i "s/user \/usr\/share\/nginx\/html/" /etc/nginx/sites-enabled/default
