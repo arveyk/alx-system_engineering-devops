@@ -4,14 +4,14 @@ import requests
 import sys
 import csv
 
-employee_id = sys.argv[1]
-url = "https://jsonplaceholder.typicode.com/todos/" + employee_id
-response = requests.get(url)
-json_resp = response.json()
 # print("{}".format(json_resp))
 
-iif __name__ == '__main__':
+if __name__ == '__main__':
     """ Addede to avoid execution when imported"""
+    employee_id = sys.argv[1]
+    url = "https://jsonplaceholder.typicode.com/todos/" + employee_id
+    response = requests.get(url)
+    json_resp = response.json()
     names = ["EMPLOYEE_NAME",
              "NUMBER_OF_TASKS",
              "TOTAL_NUMBER_OF_TASKS"
