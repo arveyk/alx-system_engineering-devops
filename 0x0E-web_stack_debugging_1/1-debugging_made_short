@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# shorter script of task 0
+sudo ufw add "Nginx HTTP"
+sudo service nginx start
+sudo service nginx stop
