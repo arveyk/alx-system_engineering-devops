@@ -2,3 +2,4 @@
 # script to enable connection on port 80
 sudo ufw allow 80
 sudo ufw allow "Nginx HTTP"
+sudo service nginx restart
