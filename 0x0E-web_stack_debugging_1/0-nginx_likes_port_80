@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # script to enable connection on port 80
-sudo ufw allow 80;
-sudo ufw allow "Nginx HTTP";
+sudo ufw allow "nginx http";
+sudo ufw reload 
 sudo service nginx start;
