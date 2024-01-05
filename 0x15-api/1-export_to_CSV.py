@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" Script that returns an employees info using RESTful api
-"""
+""" Script that returns an employees info using RESTful api """
 import requests
 import sys
 import csv
