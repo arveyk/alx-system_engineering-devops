@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # Script to install nginx
-ssh 
 apt-get install --no-install-recommends software-properties-common
 add-apt-repository ppa:vbernat/haproxy-2.0
 apt get install haproxy=2.0.\*
-sudo echo "backend\n\tserver " >> /etc/haproxy/haproxy.cnf
+echo "backend\n\tserver " | sudo tee /etc/haproxy/haproxy.cnf
 exit
