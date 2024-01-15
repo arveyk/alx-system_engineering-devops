@@ -22,5 +22,5 @@ http{
     }
   }
 } ";
-echo "$(file)" | sudo tee /etc/nginx/nginx.conf
+echo "$(file_cont)" | sudo tee /etc/nginx/nginx.conf
 sudo service nginx start;
