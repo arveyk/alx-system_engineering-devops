@@ -3,10 +3,24 @@
 sudo ufw allow "nginx http";
 sudo ufw reload 
 
-host="$(cat < /etc/hosts | grep 127.0.0.1)";
-if [ -z "$host" ]
-then
-	sudo sed -i '1s;^;127.0.0.1 localhost' /etc/hosts;
-fi
-
+file_cont="worker_processes  1;
+events {
+  worker_connections  1024;
+}    
+http{
+  upstream back-stream {
+    server back:8080;
+  }
+  server {
+    listen 80;
+    listen [::]:80;
+    server_name test.com www.test.com;
+    location / {
+      root   /usr/share/nginx/html;
+      resolver 121.0.0.11;
+      proxy_pass http://back-stream;
+    }
+  }
+} ";
+echo "$(file)" | sudo tee /etc/nginx/nginx.conf
 sudo service nginx start;
