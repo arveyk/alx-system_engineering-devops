@@ -2,4 +2,11 @@
 # script to enable connection on port 80
 sudo ufw allow "nginx http";
 sudo ufw reload 
+
+host="$(cat < /etc/hosts | grep 127.0.0.1)";
+if [ -z "$host" ]
+then
+	sudo sed -i '1s;^;127.0.0.1 localhost' /etc/hosts;
+fi
+
 sudo service nginx start;
