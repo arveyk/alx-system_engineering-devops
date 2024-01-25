@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+r=$(hostname -b)
+echo "${r}"
