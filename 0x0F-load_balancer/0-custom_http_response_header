@@ -3,4 +3,3 @@
 h_name=$(hostname -b)
 sudo sed '/^server {/a add_header X-server-by ${h_name}' /etc/nginx/site-enabled/default
 sudo service nginx reload
-# sed -i '/pattern/d' filei
