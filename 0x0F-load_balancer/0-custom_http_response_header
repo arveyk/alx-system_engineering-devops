@@ -1,5 +1,24 @@
 #!/usr/bin/env bash
 # Script for configuring nginx load balancer
 h_name=$(hostname -b)
-sudo sed '/^server {/a add_header X-server-by ${h_name}' /etc/nginx/site-enabled/default
-sudo service nginx reload
+
+# sudo sed '/^server {/a add_header X-server-by ${h_name}' 
+
+conf="server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	add_header X-Served-By \"$h_name\";
+
+	root /var/www/html;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	location / {
+		try_files \$uri \$uri/ =404;
+	}
+}"
+sudo awk -v var="$conf" '{print var}' /etc/nginx/site-enabled/default;
+sudo service nginx reload;
