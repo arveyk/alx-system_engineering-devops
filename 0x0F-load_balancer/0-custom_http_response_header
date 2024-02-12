@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Script for configuring nginx load balancer
-h_name=$(hostname -b)
+h_name=$(hostname -a)
 
 # sudo sed '/^server {/a add_header X-server-by ${h_name}' 
 
