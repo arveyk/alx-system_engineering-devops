@@ -20,6 +20,5 @@ h_name=$(hostname -b)
 	echo -e "location / {\n\t"
 	echo -e "	try_files \$uri \$uri/ =404\t\n";
 	echo "}"
-}
-sudo tee -a /etc/nginx/site-enabled/default;
+} | sudo tee -a /etc/nginx/site-enabled/default;
 sudo service nginx reload;
