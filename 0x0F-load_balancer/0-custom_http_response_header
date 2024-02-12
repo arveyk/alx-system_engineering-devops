@@ -7,18 +7,19 @@ h_name=$(hostname -a)
 {
 	echo -e "server {\n\t"
 	echo -e "listen 80 default_server;\n\t"
-	echo -e "listen [::]:80 default_server\n\t";
+	echo -e "listen [::]:80 default_server;\n\t";
 	
-	echo -e "add_header X-Served-By \"$h_name\"\n\t";
+	echo -e "add_header X-Served-By \"$h_name\";\n\t";
 
-	echo -e "root /var/www/html\n\t";
+	echo -e "root /var/www/html\n\t;";
 
-	echo -e "index index.html index.htm index.nginx-debian.html\n\t";
+	echo -e "index index.html index.htm index.nginx-debian.html;\n\t";
 
-	echo -e "server_name _\n\t";
+	echo -e "server_name _\n\t;";
 
 	echo -e "location / {\n\t"
-	echo -e "	try_files \$uri \$uri/ =404\t\n";
+	echo -e "	try_files \$uri \$uri/ =404;\t\n";
+	echo -e"\t}"
 	echo "}"
 } | sudo tee /etc/nginx/nginx.conf;
 sudo service nginx reload;
