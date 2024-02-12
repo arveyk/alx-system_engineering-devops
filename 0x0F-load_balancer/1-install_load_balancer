@@ -7,12 +7,12 @@ add-apt-repository ppa:vbernat/haproxy-2.0;
 apt get install haproxy=2.0.\* -y;
 {
 	echo "frontend wsite";
-	echo -e "\tbind 54.236.45.208:80\n";
-	echo -e "\tbind 54.236.54.208:443\n";
+	echo -e "\tbind 54.236.45.208:8080\n";
+#	echo -e "\tbind 54.236.54.208:\n";
 	echo -e "\tdefault_backend server_stack";
 	echo -e "\n";
-	echo "backend server_stack\n\t";
-	echo "balance roundrobin\n\t";
+	echo -e "backend server_stack\n\t";
+	echo -e "balance roundrobin\n\t";
 	echo -e "server web-01 35.153.17.89:80\n\t";
 	echo -e "server web-02 54.172.95.94:80\n";
 
