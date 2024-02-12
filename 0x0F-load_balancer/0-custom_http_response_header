@@ -4,21 +4,22 @@ h_name=$(hostname -b)
 
 # sudo sed '/^server {/a add_header X-server-by ${h_name}' 
 
-conf="server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
+{
+	echo -e "server {\n\t"
+	echo -e "listen 80 default_server;\n\t"
+	echo -e "listen [::]:80 default_server\n\t";
+	
+	echo -e "add_header X-Served-By \"$h_name\"\n\t";
 
-	add_header X-Served-By \"$h_name\";
+	echo -e "root /var/www/html\n\t";
 
-	root /var/www/html;
+	echo -e "index index.html index.htm index.nginx-debian.html\n\t";
 
-	index index.html index.htm index.nginx-debian.html;
+	echo -e "server_name _\n\t";
 
-	server_name _;
-
-	location / {
-		try_files \$uri \$uri/ =404;
-	}
-}"
-sudo awk -v var="$conf" '{print var}' /etc/nginx/site-enabled/default;
+	echo -e "location / {\n\t"
+	echo -e "	try_files \$uri \$uri/ =404\t\n";
+	echo "}"
+}
+sudo tee -a /etc/nginx/site-enabled/default;
 sudo service nginx reload;
