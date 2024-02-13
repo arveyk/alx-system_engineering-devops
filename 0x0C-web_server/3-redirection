@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Script to configure Nginx
-echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html 
+sudo apt update; sudo apt upgrade -y;
+sudo apt install -y nginx;
+# echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_d.html 
 
 sudo sed -i '/listen [::]:80 default_server ipv6only=on;/a  
-error_page 404 /custom_404.html;
-location = /custom_404.html {
-	root /usr/share/nginx/html;
-	internal;
-}' /etc/nginx/sites-enabled/default
+server_name /redirect_me;
+rewrite ^/$ https://www.digitalocean./$1 permanent;
+' /etc/nginx/sites-enabled/default;
 
-sudo service nginx restart
+sudo service nginx restart;
