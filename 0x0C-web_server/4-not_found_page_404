@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 # Script to configure Nginx
+
+sudo apt update && sudo apt upgrade -y;
+sudo apt install -y nginx;
+
 sudo touch /usr/share/nginx/html/custom_404.html; 
 echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html; 
 
