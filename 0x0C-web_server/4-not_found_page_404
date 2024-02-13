@@ -1,12 +1,18 @@
 #!/usr/bin/env bash
 # Script to configure Nginx
-echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html 
+touch /usr/share/nginx/html/custom_404.html; 
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html; 
 
-sudo sed -i '/listen [::]:80 default_server ipv6only=on;/a  
-error_page 404 /custom_404.html;
-location = /custom_404.html {
-	root /usr/share/nginx/html;
-	internal;
-}' /etc/nginx/sites-enabled/default
+{
+	echo -e "server {\n\t";
+	echo -e "listen 80 default_server;\n\t"
+	echo -e "listen [::]:80 default_server ipv6only=on;\n\t"
+	echo -e "error_page 404 /custom_404.html;\n\t"
+	echo -e "location = /custom_404.html {\n\t"
+	echo -e "root /usr/share/nginx/html;\n\t"
+	echo -e "internal;\n\t"
+	echo -e "}\n"
+	echo -e "}"
+} | sudo tee /etc/nginx/sites-enabled/default;
 
-sudo service nginx restart
+sudo service nginx restart;
