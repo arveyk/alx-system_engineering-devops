@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Script to configure Nginx
-touch /usr/share/nginx/html/custom_404.html; 
+sudo touch /usr/share/nginx/html/custom_404.html; 
 echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html; 
 
 {
