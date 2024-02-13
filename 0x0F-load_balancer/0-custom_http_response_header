@@ -3,6 +3,8 @@
 h_name=$(hostname -a)
 
 # sudo sed '/^server {/a add_header X-server-by ${h_name}' 
+sudo apt update; sudo apt upgrade -y;
+sudo apt install nginx -y;
 
 {
 	echo -e "server {\n\t"
