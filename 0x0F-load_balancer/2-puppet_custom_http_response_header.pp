@@ -1,5 +1,5 @@
 # puppet manifest to install and config nginx
-# class {"nginx"}
+class {'nginx'}
 class:
  -nginx:: snippet
  nginx:: snippet:
