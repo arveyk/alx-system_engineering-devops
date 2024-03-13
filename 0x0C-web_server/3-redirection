@@ -11,8 +11,9 @@ sudo apt install -y nginx;
 
 {
 	echo -e "server {\n\t"
-	echo -e "listen 80 default_server;\t"
-	echo -e "server_name _;\t"
+	echo -e "listen 80;\t"
+	echo -e "listen 443 ssl;\t"
+	echo -e "server_name redirect_me;\t"
 	echo -e "return 301 https://www.google.com;"
 	echo "}"
 } | sudo tee /etc/nginx/nginx.conf
