@@ -4,9 +4,17 @@ sudo apt update; sudo apt upgrade -y;
 sudo apt install -y nginx;
 # echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_d.html 
 
-sudo sed -i '/listen [::]:80 default_server ipv6only=on;/a  
-server_name /redirect_me;
-rewrite ^/$ https://www.digitalocean./$1 permanent;
-' /etc/nginx/sites-enabled/default;
+# sudo sed -i '/listen [::]:80 default_server ipv6only=on;/a  
+# server_name /redirect_me;
+# rewrite ^/$ https://www.digitalocean./$1 permanent;
+#' /etc/nginx/sites-enabled/default;
+
+{
+	echo -e "server {\n\t"
+	echo -e "listen 80 default_server;\t"
+	echo -e "server_name _;\t"
+	echo -e "return 301 https://www.google.com;"
+	echo "}"
+} | sudo tee /etc/nginx/nginx.conf
 
 sudo service nginx restart;
