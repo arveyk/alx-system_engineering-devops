@@ -1,26 +1,31 @@
 #!/usr/bin/env bash
 # script to enable connection on port 80
+sudo apt update;
+sudo apt upgrade -y;
+
 sudo ufw allow "nginx http";
 sudo ufw reload 
 
-file_cont="worker_processes  1;
-events {
-  worker_connections  1024;
-}    
-http{
-  upstream back-stream {
-    server back:8080;
-  }
-  server {
-    listen 80;
-    listen [::]:80;
-    server_name test.com www.test.com;
-    location / {
-      root   /usr/share/nginx/html;
-      resolver 121.0.0.11;
-      proxy_pass http://back-stream;
-    }
-  }
-} ";
-echo "$file_cont" | sudo tee /etc/nginx/nginx.conf
-sudo service nginx start;
+{
+	echo "worker_processes  1;";
+	echo "events {";
+	echo -e "\tworker_connections  1024;";
+	echo "}";    
+	echo "http {";
+  	echo -e "\tupstream back-stream {";
+	echo -e "\t\tserver back:8080;";
+	echo -e "\t}"
+	echo -e "\tserver {"
+	echo -e "\t\tlisten 80;";
+	echo -e "\t\tlisten [::]:80;";
+    	echo -e "\t\tserver_name test.com www.test.com;";
+	echo -e "\t\tlocation / {";
+	echo -e "\t\t\troot   /usr/share/nginx/html;"
+      	echo -e "\t\t\tresolver 121.0.0.11;";
+	echo -e "\t\t\tproxy_pass http://back-stream;";
+    	echo -e "\t\t}";
+	echo -e "\t}";
+	echo  "}"
+} | sudo tee /etc/nginx/nginx.conf
+
+sudo service nginx restart;

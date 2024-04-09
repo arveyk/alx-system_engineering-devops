@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Script to display DNS record
+dns_rec="$1";
+sub="$2";
+
+ANS=$(dig "$sub$dns_rec" | tail -1);
+awk '{ print "The subdomain www is a", $5 "record and points to", $5}' $ANS;

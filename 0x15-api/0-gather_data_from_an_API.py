@@ -29,6 +29,8 @@ if __name__ == '__main__':
         if json_resp[name]:
             print(json_resp[name])
 
+    print('{}'.format(json_resp));
+
     print('Employee {} is done with'.format(json_resp['completed']))
     print('\t{}'.format(json_resp['title']))
 
