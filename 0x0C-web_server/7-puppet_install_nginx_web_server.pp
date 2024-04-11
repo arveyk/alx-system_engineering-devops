@@ -1,3 +1,4 @@
+# puppet script to install and consfigure nginx
 nginx::resource::server { 'puppet':
   ensure	=> present,
   server_name	=> ['puppet'],
