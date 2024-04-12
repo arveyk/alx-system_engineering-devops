@@ -2,19 +2,17 @@
 # Script to install nginx
 sudo apt install update;
 sudo apt upgrade -y;
-apt-get install --no-install-recommends software-properties-common -y;
-add-apt-repository ppa:vbernat/haproxy-2.0;
-apt get install haproxy=2.0.\* -y;
+# echo -e "\tbind 54.236.54.208:\n";
+apt get install haproxy -y;
 {
 	echo "frontend wsite";
-	echo -e "\tbind 54.236.45.208:8080\n";
-#	echo -e "\tbind 54.236.54.208:\n";
+	echo -e "\tbind :80\n";
 	echo -e "\tdefault_backend server_stack";
 	echo -e "\n";
 	echo -e "backend server_stack\n\t";
 	echo -e "balance roundrobin\n\t";
-	echo -e "server web-01 35.153.17.89:80\n\t";
-	echo -e "server web-02 54.172.95.94:80\n";
+	echo -e "server web-01 52.205.84.113:80\n\t";
+	echo -e "server web-02 54.172.85.127:80\n";
 
 } | sudo tee -a /etc/haproxy/haproxy.cfg;
 sudo service restart haproxy;
