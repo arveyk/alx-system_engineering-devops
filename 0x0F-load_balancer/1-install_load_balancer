@@ -2,8 +2,9 @@
 # Script to install nginx
 sudo apt install update;
 sudo apt upgrade -y;
-# echo -e "\tbind 54.236.54.208:\n";
+
 apt get install haproxy -y;
+apt get install nginx -y;
 {
 	echo "frontend wsite";
 	echo -e "\tbind :80\n";
@@ -15,5 +16,23 @@ apt get install haproxy -y;
 	echo -e "server web-02 54.172.85.127:80\n";
 
 } | sudo tee -a /etc/haproxy/haproxy.cfg;
+apt get install nginx -y;
+{
+	echo "server {";
+	echo -e "\tadd_header \"\$hostname\";\n";
+	echo -e "\tlisten 80 default_server;\n";
+	echo -e "\tlisten [::]:80 default_server;\n";
+	echo -e "\tindex index.html index.htm index.nginx-debian.html;\n";
+	echo -e "\tserver_name _;\n";
+	echo -e "location / {\n";
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+	echo -e "\t try_files \$uri \$uri/ =404\n;";
+	echo -e "\t}"
+	echo "}";
+} | sudo tee -a /etc/nginx/sites-available/default;
+
+sudo service restart nginx;
 sudo service restart haproxy;
+
 exit;
