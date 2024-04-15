@@ -1,3 +1,4 @@
+# Script to create an index.html file with some text
 file { '/var/www/html/index.html':
   ensure  => 'present',
   content => 'Just another WordPress site</title>\n
