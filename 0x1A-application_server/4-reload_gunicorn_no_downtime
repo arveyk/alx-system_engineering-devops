@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 # Script to grcefully restart NGINX
-ps aux | grep gunicorn | awk 'print $2' | xargx kill -HUP
+ps aux | pgrep gunicorn | awk 'print $2' | xargs kill -HUP
