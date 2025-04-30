@@ -8,7 +8,7 @@ import sys
 
 if __name__ == '__main__':
     """ Addede to avoid execution when imported"""
-    
+
     user_id = sys.argv[1]
     url = f"https://jsonplaceholder.typicode.com/users/{user_id}/todos/"
     response = requests.get(url)
@@ -27,13 +27,6 @@ if __name__ == '__main__':
             tasks_done += 1
             tasks_list.append(json_resp[index]["title"])
 
-    """print('Employee {} is done with tasks({}/{}):'.format(
-          user["name"],
-          tasks_done, response_len))
-    for elem in tasks_list:
-        print('\t {}'.format(elem))"""
-
-
     with open(f"{user_id}.csv", "w") as user_csv:
         fields = ["userId", "name", "status", "title"]
 
@@ -46,6 +39,3 @@ if __name__ == '__main__':
                 "status": json_resp[element]["completed"],
                 "title": json_resp[element]["title"]
                 })
-
-        #for line in user_csv:
-        #    csv_write.writerow(line)
