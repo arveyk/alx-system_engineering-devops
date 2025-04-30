@@ -8,34 +8,28 @@ import sys
 
 if __name__ == '__main__':
     """ Added to prevent execution when imported"""
-    employee_id = sys.argv[1]
-    url = "https://jsonplaceholder.typicode.com/todos/" + employee_id
+    user_id = sys.argv[1]
+    url = f"https://jsonplaceholder.typicode.com/users/{user_id}/todos"
     response = requests.get(url)
     json_resp = response.json()
 
-    print("{}".format(json_resp))
+    user_url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
+    user_response = requests.get(user_url)
+    user = user_response.json()
 
-    names = ["EMPLOYEE_NAME",
-             "NUMBER_OF_TASKS",
-             "TOTAL_NUMBER_OF_TASKS"
-             ]
+    resp_len = len(json_resp)
 
-    for name in json_resp:
-        if json_resp[name]:
-            print(json_resp[name])
-
-    print('Employee {} is done with'.format(json_resp['completed']))
-    print('\t{}'.format(json_resp['title']))
-
-    with open("response.text", "w") as file_json:
-        file_json.write(response.text)
-
-    with open("USER.csv", "w") as user_csv:
-        fields = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
-        csv_write = csv.DictWriter(user_csv, fieldnames=fields)
-
-        for line in response.text:
-            csv_write.writerow(line)
-
-    with open("USER_ID.json", "w") as json_file:
-        json.dumps(response.text, json_file)
+    data = {f"{user_id}": [{
+            "task": json_resp[0]["title"],
+            "completed": json_resp[0]["completed"],
+            "username": user["username"]
+            }]
+            }
+    for index in range(1, resp_len):
+        data[f"{user_id}"].append({
+                "task": json_resp[index]["title"],
+                "completed": json_resp[index]["completed"],
+                "username": user["username"]
+                })
+    with open(f"{user_id}.json", "w") as json_file:
+        json.dump(data, json_file)
