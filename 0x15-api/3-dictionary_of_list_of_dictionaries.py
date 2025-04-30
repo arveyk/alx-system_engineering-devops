@@ -1,30 +1,42 @@
 #!/usr/bin/python3
 """ Script that returns an employees info using RESTful api
 """
+import csv
+import json
 import requests
 import sys
 
-employee_id = sys.argv[1]
-url = "https://jsonplaceholder.typicode.com/todos/" + employee_id
-response = requests.get(url)
-json_resp = response.json()
+if __name__ == '__main__':
+    """ Added to prevent execution when imported"""
 
-print("{}".format(json_resp))
+    users_Url = f"https://jsonplaceholder.typicode.com/users"
+    user_response = requests.get(users_Url)
+    users = user_response.json()
 
-names = ["EMPLOYEE_NAME",
-         "NUMBER_OF_TASKS",
-         "TOTAL_NUMBER_OF_TASKS"
-         ]
+    user_data = {}
 
-for name in json_resp:
-    if json_resp[name]:
-        print(json_resp[name])
+    for user in users:
+        userid = user["id"]
+        username = user["username"]
 
-print('Employee {} is done with'.format(json_resp['completed']))
-print('\t{}'.format(json_resp['title']))
+        user_url = f"https://jsonplaceholder.typicode.com/users/{userid}/todos"
+        response = requests.get(user_url)
+        json_resp = response.json()
 
-with open("response.text", "w") as file_json:
-    file_json.write(response.text)
+        resp_len = len(json_resp)
 
-with open("to_do_all_employees.json", "w") as emp_json:
-    emp_json(response.text, emp_json)
+        user_data[f"{userid}"] = [{
+                "task": json_resp[0]["title"],
+                "completed": json_resp[0]["completed"],
+                "username": user["username"]
+                }]
+
+        for index in range(1, resp_len):
+            user_data[f"{userid}"].append({
+                "task": json_resp[index]["title"],
+                "completed": json_resp[index]["completed"],
+                "username": user["username"]
+                })
+
+    with open("todo_all_employees.json", "w") as json_file:
+        json.dump(user_data, json_file)
