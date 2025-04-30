@@ -32,6 +32,8 @@ if __name__ == '__main__':
             tasks_done += 1
             tasks_list.append(json_resp[index]["title"])
 
-    print('Employee {} is done with tasks({}/{})'.format(user["name"], tasks_done,response_len))
+    print('Employee {} is done with tasks({}/{})'.format(
+          user["name"],
+          tasks_done, response_len))
     for elem in tasks_list:
-         print('\t {}'.format(elem));
+        print('\t {}'.format(elem))
