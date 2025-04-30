@@ -34,7 +34,6 @@ if __name__ == '__main__':
         fields = ["userId", "name", "status", "title"]
 
         csv_writer = csv.DictWriter(user_csv, fieldnames=fields)
-        csv_writer.writeheader()
         for element in range(response_len):
             csv_writer.writerow({
                 "userId": f"{user_id}",
