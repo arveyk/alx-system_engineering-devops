@@ -10,11 +10,14 @@ if __name__ == '__main__':
     """ Addede to avoid execution when imported"""
 
     user_id = sys.argv[1]
+
     url = f"https://jsonplaceholder.typicode.com/users/{user_id}/todos/"
+
     response = requests.get(url)
     json_resp = response.json()
 
     user_url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
+    
     response2 = requests.get(user_url)
     user = response2.json()
 
@@ -34,8 +37,8 @@ if __name__ == '__main__':
         csv_writer.writeheader()
         for element in range(response_len):
             csv_writer.writerow({
-                "userId": user_id,
-                "name": user["name"],
+                "userId": f"{user_id}",
+                "name": user["username"],
                 "status": json_resp[element]["completed"],
                 "title": json_resp[element]["title"]
                 })
