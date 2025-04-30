@@ -8,28 +8,44 @@ import sys
 
 if __name__ == '__main__':
     """ Addede to avoid execution when imported"""
-    employee_id = sys.argv[1]
-    url = "https://jsonplaceholder.typicode.com/todos/" + employee_id
+    
+    user_id = sys.argv[1]
+    url = f"https://jsonplaceholder.typicode.com/users/{user_id}/todos/"
     response = requests.get(url)
     json_resp = response.json()
-    names = ["EMPLOYEE_NAME",
-             "NUMBER_OF_TASKS",
-             "TOTAL_NUMBER_OF_TASKS"
-             ]
 
-    for name in json_resp:
-        if json_resp[name]:
-            print(json_resp[name])
+    user_url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
+    response2 = requests.get(user_url)
+    user = response2.json()
 
-    print('Employee {} is done with'.format(json_resp['completed']))
-    print('\t{}'.format(json_resp['title']))
+    response_len = len(json_resp)
+    tasks_done = 0
+    tasks_list = []
 
-    with open("response.text", "w") as file_json:
-        file_json.write(response.text)
+    for index in range(response_len):
+        if json_resp[index]["completed"]:
+            tasks_done += 1
+            tasks_list.append(json_resp[index]["title"])
 
-    with open("USER.csv", "w") as user_csv:
-        fields = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
-        csv_write = csv.DictWriter(user_csv, fieldnames=fields)
+    """print('Employee {} is done with tasks({}/{}):'.format(
+          user["name"],
+          tasks_done, response_len))
+    for elem in tasks_list:
+        print('\t {}'.format(elem))"""
 
-        for line in response.text:
-            csv_write.writerow(line)
+
+    with open(f"{user_id}.csv", "w") as user_csv:
+        fields = ["userId", "name", "status", "title"]
+
+        csv_writer = csv.DictWriter(user_csv, fieldnames=fields)
+        csv_writer.writeheader()
+        for element in range(response_len):
+            csv_writer.writerow({
+                "userId": user_id,
+                "name": user["name"],
+                "status": json_resp[element]["completed"],
+                "title": json_resp[element]["title"]
+                })
+
+        #for line in user_csv:
+        #    csv_write.writerow(line)
