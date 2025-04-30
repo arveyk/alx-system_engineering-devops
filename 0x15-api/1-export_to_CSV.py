@@ -17,7 +17,6 @@ if __name__ == '__main__':
     json_resp = response.json()
 
     user_url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
-    
     response2 = requests.get(user_url)
     user = response2.json()
 
@@ -31,13 +30,20 @@ if __name__ == '__main__':
             tasks_list.append(json_resp[index]["title"])
 
     with open(f"{user_id}.csv", "w") as user_csv:
-        fields = ["userId", "name", "status", "title"]
-
-        csv_writer = csv.DictWriter(user_csv, fieldnames=fields)
+        csv_writer = csv.writer(user_csv,
+                                delimiter=',', quotechar='"',
+                                quoting=csv.QUOTE_ALL)
         for element in range(response_len):
-            csv_writer.writerow({
-                "userId": f"{user_id}",
-                "name": user["username"],
-                "status": json_resp[element]["completed"],
-                "title": json_resp[element]["title"]
-                })
+
+            """csv_writer.writerow({
+                'userId': f"{user_id}",
+                'name': user["username"],
+                'status': json_resp[element]["completed"],
+                'title': json_resp[element]["title"]
+                })"""
+            csv_writer.writerow(
+                                 [f"{user_id}",
+                                     user["username"],
+                                     json_resp[element]["completed"],
+                                     json_resp[element]["title"]
+                                  ])
