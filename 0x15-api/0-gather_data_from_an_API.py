@@ -15,24 +15,23 @@ import sys
 if __name__ == '__main__':
     """ This ensures the module is not executes when imported """
     employee_id = sys.argv[1]
-    url = "https://jsonplaceholder.typicode.com/todos/" + employee_id
+    url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos/"
     response = requests.get(url)
     json_resp = response.json()
 
-    # print("{}".format(json_resp))
+    user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    response2 = requests.get(user_url)
+    user = response2.json()
 
-    names = ["EMPLOYEE_NAME",
-             "NUMBER_OF_TASKS",
-             "TOTAL_NUMBER_OF_TASKS"
-             ]
-    for name in json_resp:
-        if json_resp[name]:
-            print(json_resp[name])
+    response_len = len(json_resp)
+    tasks_done = 0
+    tasks_list = []
 
-    print('{}'.format(json_resp));
+    for index in range(response_len):
+        if json_resp[index]["completed"]:
+            tasks_done += 1
+            tasks_list.append(json_resp[index]["title"])
 
-    print('Employee {} is done with'.format(json_resp['completed']))
-    print('\t{}'.format(json_resp['title']))
-
-    with open("response.text", "w") as file_json:
-        file_json.write(response.text)
+    print('Employee {} is done with tasks({}/{})'.format(user["name"], tasks_done,response_len))
+    for elem in tasks_list:
+         print('\t {}'.format(elem));
